@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gzq.graduationproject.informationCollectionModule.dao.ZhongYuanMapper">
+    <!-- 这里namespace必须是UserMapper接口的路径” -->
+    <!--添加楼盘信息-->
+    <insert id="louPanAdd" parameterType="ZhongYuanLouPan">
+        insert into loupan(name,weizhi,kaifashang,jiage,leixing,huxing,chengshi) values(#{name},#{weizhi},#{kaifashang},#{jiage},#{leixing},#{huxing},#{chengshi})
+        <!-- 这里sql结尾不能加分号，否则报“ORA-00911”的错误 -->
+    </insert>
+
+
+    <!--添加租房信息-->
+    <insert id="zuFangAdd" parameterType="ZhongYuanZuFang">
+        insert into zufang(name,jiage,mianji,huxing,chuzuleixing,riqi,louti,wuye,zhuangxiu,qu,jiedao,chengshi) values(#{name},#{jiage},#{mianji},#{huxing},#{chuzuleixing},#{riqi},#{louti},#{wuye},#{zhuangxiu},#{qu},#{jiedao},#{chengshi})
+        <!-- 这里sql结尾不能加分号，否则报“ORA-00911”的错误 -->
+    </insert>
+
+    <!--添加二手房信息-->
+    <insert id="erShouFangAdd" parameterType="ZhongYuanErShouFang">
+        insert into ershoufang(name,jiage,mianji,huxing,zhuangxiu,louceng,riqi,leixing,lvhualv,guanlifei,wuye,kaifashang,louti,qu,jiedao,chengshi) values(#{name},#{jiage},#{mianji},#{huxing},#{zhuangxiu},#{louceng},#{riqi},#{leixing},#{lvhualv},#{guanlifei},#{wuye},#{kaifashang},#{louti},#{qu},#{jiedao},#{chengshi})
+        <!-- 这里sql结尾不能加分号，否则报“ORA-00911”的错误 -->
+    </insert>
+
+
+
+    <!--根据名称查找楼盘记录-->
+    <select id="selectLouPan" parameterType="ZhongYuanLouPan">
+        SELECT * FROM loupan WHERE name = #{name}
+    </select>
+
+    <!--根据名称查找二手房记录-->
+    <select id="selectErShouFang" parameterType="ZhongYuanErShouFang">
+        SELECT * FROM ershoufang WHERE name = #{name}
+    </select>
+
+    <!--根据名称查找租房记录-->
+    <select id="selectZuFang" parameterType="ZhongYuanZuFang">
+        SELECT * FROM zufang WHERE name = #{name}
+    </select>
+
+
+
+    <!--更新楼盘记录-->
+    <update id="updateLouPan" parameterType="ZhongYuanLouPan">
+        UPDATE loupan SET jiage = #{jiage}
+    </update>
+    <!--更新二手房记录-->
+    <update id="updateErShouFang" parameterType="ZhongYuanErShouFang">
+        UPDATE ershoufang SET jiage = #{jiage}
+    </update>
+    <!--更新租房记录-->
+    <update id="updateZuFang" parameterType="ZhongYuanZuFang">
+        UPDATE zufang SET jiage = #{jiage}
+    </update>
+
+</mapper>

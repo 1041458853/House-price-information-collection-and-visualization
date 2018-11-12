@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>房价信息分析系统</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap v3.3.7 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Font Awesome v4.7.0 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Ionicons v2.0.0 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/2.0.0/css/ionicons.min.css">
+    <!-- Theme style v2.4.2 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.4.2/css/AdminLTE.min.css">
+    <!-- DataTables v1.10.16 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/datatables/1.10.16/css/dataTables.bootstrap.min.css">
+    <!-- AdminLTE Skins.v2.4.2 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.4.2/css/skins/skin-blue.css">
+    <!-- jQuery UI CSS v1.12.1 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <!--添加中科大CDN-->
+    <link rel="stylesheet"
+          href="https://fonts.lug.ustc.edu.cn/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+<div class="wrapper">
+
+    <!-- Main Header -->
+    <header class="main-header" id="main-header"></header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar" id="main-sidebar"></aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                租房
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content container-fluid">
+
+            <!-- 在售房源charts开始 -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border ">
+                            <h3 class="box-title" id="chart_title">分析图表</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div id="chart-container">
+                                <div id="mycanvas" style="width: 900px;height:600px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 在售房源charts结束 -->
+
+            <!-- 通过商圈获取小区列表开始 -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title" id="records_title">搜索结果：</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="records_table" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>名称</th>
+                                    <th>价格（元/月）</th>
+                                    <th>面积</th>
+                                    <th>户型</th>
+                                    <th>出租类型</th>
+                                    <th>购入日期</th>
+                                    <th>楼梯</th>
+                                    <th>物业类型</th>
+                                    <th>装修情况</th>
+                                    <th>城市</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- 数据 放这里-->
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>名称</th>
+                                    <th>价格（元/月）</th>
+                                    <th>面积</th>
+                                    <th>户型</th>
+                                    <th>出租类型</th>
+                                    <th>购入日期</th>
+                                    <th>楼梯</th>
+                                    <th>物业类型</th>
+                                    <th>装修情况</th>
+                                    <th>城市</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+            <!-- 通过商圈获取小区列表结束 /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <!--navbar-fixed-bottom 修复错版问题-->
+    <footer class="main-footer" id="main-footer"></footer>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+<!-- jQuery v3.3.1 -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap v3.3.7 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- AdminLTE App v2.4.2 -->
+<script src="https://cdn.bootcss.com/admin-lte/2.4.2/js/adminlte.min.js"></script>
+<!-- DataTables v1.10.16 -->
+<script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.bootcss.com/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<!-- 页面js -->
+<script src="dist/js/zufang.js"></script>
+<!--echarts.js库-->
+<script src="https://cdn.bootcss.com/echarts/4.2.0-rc.1/echarts-en.common.js"></script>
+<!-- ChartJS v1.0.2 最新2.7.2 -->
+<script src="https://cdn.bootcss.com/Chart.js/2.7.2/Chart.min.js"></script>
+<!-- jQuery UI 1.12.1 fixed the bugs-->
+<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<!--SlimScroll-->
+<!--<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>-->
+<!--FastClick-->
+<!--<script src="bower_components/fastclick/lib/fastclick.js"></script>-->
+<!--Optionally, you can add Slimscroll and FastClick plugins.-->
+<!--Both of these plugins are recommended to enhance the user experience. -->
+</body>
+</html>

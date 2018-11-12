@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>登录</title>
+    <link rel="stylesheet" href="dist/js/frame/layui/css/layui.css">
+    <link rel="stylesheet" href="dist/js/frame/static/css/style.css">
+    <link rel="icon" href="dist/js/frame/static/image/code.png">
+</head>
+<body>
+
+<div class="login-main">
+    <header class="layui-elip">后台登录</header>
+    <form class="layui-form">
+        <div class="layui-input-inline">
+            <input type="email" name="email" required lay-verify="email" placeholder="邮箱" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline login-btn">
+            <button lay-submit lay-filter="formDemo" class="layui-btn">立即找回</button>
+        </div>
+        <hr/>
+        <p><a href="/login" class="fl">已有账号？立即登录</a><a href="/register" class="fr">立即注册？</a></p>
+    </form>
+</div>
+
+
+<script src="dist/js/frame/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['form'], function () {
+
+        // 操作对象
+        var form = layui.form
+            , $ = layui.jquery;
+
+        form.verify({
+            nickname: function (value,item) {
+                if(String(value).length>6){
+                    return '用户名不能超过6个字符';
+                }
+            },
+            password: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ]
+        });
+
+        form.on('submit(formDemo)', function(data){
+            $.ajax({
+                url: "/loginpost",
+                dataType: "json",
+                data: data.field,
+                type: "post",
+                success: function (data) {
+                    if(data.success == true){
+                        alert("重置邮件已发送置你的邮箱，请根据提示操作。")
+                        window.location.href ="/login";
+                    }else {
+                        alert("请求失败");
+                    }
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+
+        });
+
+
+    });
+</script>
+</body>
+</html>

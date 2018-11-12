@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>注册页</title>
+    <link rel="stylesheet" href="dist/js/frame/layui/css/layui.css">
+    <link rel="stylesheet" href="dist/js/frame/static/css/style.css">
+    <link rel="icon" href="dist/js/frame/static/image/code.png">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="dist/js/frame/layui/layui.js"></script>
+    <script src="dist/js/common/header.js"></script>
+</head>
+<body>
+
+<div class="login-main">
+    <header class="layui-elip">注册</header>
+    <form class="layui-form" method="post">
+        <div class="layui-input-inline">
+            <input type="email" name="email" required  lay-verify="email" placeholder="邮箱" autocomplete="off" class="layui-input">
+            <input type="password" name="password" required  lay-verify="pass" placeholder="密码" autocomplete="off" class="layui-input">
+            <input type="text" name="nickname" required  lay-verify="nickname" placeholder="昵称" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-input-inline login-btn">
+            <button lay-submit lay-filter="formDemo" class="layui-btn">注册</button>
+        </div>
+        <hr/>
+        <p><a href="/login" class="fl">已有账号？立即登录</a><a href="/loupan" class="fr">返回首页</a></p>
+    </form>
+</div>
+
+
+
+<script type="text/javascript">
+    layui.use(['form'], function (data) {
+        var form    = layui.form
+            ,$      = layui.jquery;
+
+        form.verify({
+            nickname: function (value,item) {
+                if(String(value).length>6){
+                    return '用户名不能超过6个字符';
+                }
+            },
+            password: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ]
+        });
+
+        form.on('submit(formDemo)', function(data){
+            $.ajax({
+                url: "/registerpost",
+                dataType: "json",
+                data: data.field,
+                type: "post",
+                success: function (data) {
+                    if(data == true){
+                        alert("注册成功,请去邮箱激活后登录");
+                        window.location.href ="/login";
+                    }else {
+                        alert("此邮箱已注册")
+                        window.location.href ="/register";
+                    }
+                }
+             });
+            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+    });
+
+
+</script>
+</body>
+</html>
